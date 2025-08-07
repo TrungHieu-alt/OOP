@@ -1,0 +1,529 @@
+\@font-face {
+  font-family: 'Euclid Circular A Semibold';
+  src: url("/css/font/EuclidCircularA-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'Euclid Circular A Medium';
+  src: url("/css/font/EuclidCircularA-Medium.ttf") format("truetype");
+}
+
+
+.main_root {
+    -fx-background-color: #e9e4fa;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+}
+
+.menu_anchorpane {
+    -fx-background-color: #ffffff;
+}
+
+.main_anchorpane {
+    -fx-background-color: transparent;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+}
+
+.dashboard_anchorpane {
+    -fx-background-color: transparent;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+}
+
+.addnew_anchorpane {
+    -fx-background-color: transparent;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+}
+
+.profile_anchorpane {
+    -fx-background-color: transparent;
+}
+
+.library_anchorpane {
+    -fx-background-color: transparent;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+}
+
+.mainaddbook_anchorpane {
+    -fx-background-color: transparent;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+}
+
+.menu_button {
+    -fx-background-color:#ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+    -fx-text-fill: #989ca7;
+}
+
+.menu_button:hover{
+    -fx-background-color:#f6f7f9;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+}
+
+.purple_button {
+    -fx-background-color:#6A6BE6;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+.purple_button:hover{
+    -fx-background-color:#9091f2;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+}
+
+.menu_button_pressed{
+    -fx-background-color:#e9e4fa;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+    -fx-text-fill: #6a6be6;
+}
+
+.smaller_button {
+    -fx-background-color:transparent;
+    -fx-cursor: hand;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+    -fx-text-fill: #5061cf;
+}
+
+.dashboard_stat_pane {
+    -fx-background-color:#ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-border-style: solid;
+    -fx-border-color: #ffffff;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, #c9c9c1, 10, 0.0, 0, 0);
+}
+
+.label_1 {
+    -fx-text-fill:#30303d;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+}
+
+.label_2 {
+    -fx-text-fill:#30303d;
+    -fx-font-family: 'Euclid Circular A Medium';
+    -fx-font-weight: bold;
+}
+
+.name_label1 {
+    -fx-text-fill:#6a6be6;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+}
+
+.name_label2 {
+    -fx-text-fill:#30303d;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+}
+
+.chart-legend {
+   -fx-background-color: transparent;
+   -fx-padding: 0 0 0 20px;
+}
+
+.chart-legend-item-symbol {
+   -fx-background-radius: 360;
+}
+
+.chart-legend-item {
+    -fx-text-fill: #000000;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.default-color0.chart-bar {
+    -fx-background-color: linear-gradient(to bottom, #9091f2, #6a6be6);
+    -fx-background-radius: 10; /* Rounds the corners of the bars */
+    -fx-padding: 2px;
+}
+
+.default-color1.chart-bar {
+    -fx-background-color: #eeafaa;
+    -fx-background-radius: 10; /* Rounds the corners of the bars */
+    -fx-padding: 2px;
+}
+
+.default-color0.chart-bar-symbol {
+    -fx-bar-fill: #6a6be6;
+}
+
+.default-color1.chart-bar-symbol {
+    -fx-bar-fill: #eeafaa;
+}
+
+.chart-vertical-grid-lines {
+    -fx-stroke: transparent;
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: transparent;
+}
+
+.avatar_circle {
+    -fx-stroke: transparent;
+}
+
+.acctype_label {
+    -fx-text-fill:#aebecf;
+    -fx-font-family: 'Euclid Circular A Medium';
+    -fx-font-weight: bold;
+}
+
+.ustatistics_label {
+    -fx-text-fill:#30303d;
+    -fx-font-family: 'Euclid Circular A Medium';
+    -fx-font-weight: bold;
+}
+
+.upane_1 {
+    -fx-background-color:#9091f2;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-border-style: solid;
+    -fx-border-color: #ffffff;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+}
+
+.upane_2 {
+    -fx-background-color:#30303d;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-border-style: solid;
+    -fx-border-color: #ffffff;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+}
+
+.quote_label {
+    -fx-text-fill:#ffffff;
+    -fx-font-family: 'Euclid Circular A Medium';
+    -fx-font-weight: bold;
+}
+
+.search_pane {
+    -fx-background-color:#ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-border-style: solid;
+    -fx-border-color: #ffffff;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, #c9c9c1, 10, 0.0, 0, 0);
+}
+
+.search_text {
+    -fx-background-color:transparent;
+    -fx-font-family: 'Euclid Circular A Medium';
+    -fx-font-weight: normal;
+}
+
+.regular_text {
+    -fx-background-color:transparent;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+}
+
+.api_scrollpane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.api_scrollpane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.bigCard {
+    -fx-background-color:#ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-border-style: solid;
+    -fx-border-color: #ffffff;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+}
+
+.smallCard {
+    -fx-background-color:#ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-border-style: solid;
+    -fx-border-color: #ffffff;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+}
+
+.logCard {
+    -fx-background-color:#ffffff;
+    -fx-border-color: #ffffff;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+}
+
+.bookdetail_anchorpane {
+    -fx-background-color:#30303d;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+}
+
+.black_button {
+    -fx-background-color:#30303d;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-text-fill:#000000;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+.black_button:hover{
+    -fx-background-color:#434352;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+}
+
+.body_label {
+    -fx-text-fill:#30303d;
+    -fx-font-family: 'Euclid Circular A Semibold';
+    -fx-font-weight: bold;
+}
+
+.info_box {
+    -fx-background-color:#e9e4fa;
+}
+
+.login_button {
+    -fx-background-color : #FFF;
+    -fx-border-color: #355ECE;
+    -fx-text-fill:  #0C3988;
+}
+
+.login_button:hover {
+    -fx-background-color : #355ECE ;
+    -fx-text-fill:  #FFF;
+}
+
+.login_button:pressed {
+    -fx-background-color : #0C39FF ;
+    -fx-text-fill: #FFF;
+}
+
+/*.button2 {
+    -fx-background-color :  #0C39FF;
+    -fx-border-color: #FFF;
+    -fx-text-fill:  #FFF;
+}
+.button2:hover {
+    -fx-background-color : #0C3988 ;
+    -fx-text-fill:   #FFF;
+}
+.button2:pressed {
+    -fx-background-color : #0C3400 ;
+    -fx-text-fill: #FFF;
+}*/
+
+.login_text {
+    -fx-background-color:#ffffff;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #e9e8ec;
+    -fx-background-radius: 10px;
+    -fx-font-family: 'Euclid Circular A Medium';
+    -fx-font-weight: normal;
+    -fx-text-fill: #000000;
+}
+
+.login_text:focused {
+    -fx-border-color: #6A6BE6;
+}
+
+.login_text:focused .text-field-prompt {
+    -fx-text-fill: transparent;
+}
+
+.login_text .text-field-prompt {
+    -fx-text-fill: #aaa;
+    -fx-font-size: 14px;
+}
+
+.book_management_section_choice_pane {
+   -fx-background-color:#ffffff;
+   -fx-border-width: 2px 2px 2px 2px;
+   -fx-border-radius: 10px;
+   -fx-background-radius: 10px;
+   -fx-border-style: solid;
+   -fx-border-color: #ffffff;
+   -fx-font-family: 'Euclid Circular A Semibold';
+   -fx-font-weight: bold;
+   -fx-effect: dropshadow(gaussian, #c9c9c1, 10, 0.0, 0, 0);
+}
+
+.background_anchorpane {
+    -fx-background-color: rgba(0, 0, 0, 0.5); /* Màu đen với độ trong suốt 50% */
+}
+
+.book_detail_pane {
+   -fx-background-color:#ffffff;
+   -fx-border-width: 2px 2px 2px 2px;
+   -fx-border-radius: 10px;
+   -fx-background-radius: 10px;
+   -fx-border-style: solid;
+   -fx-border-color: #ffffff;
+   -fx-font-family: 'Euclid Circular A Semibold';
+   -fx-font-weight: bold;
+}
+
+.login_background {
+    -fx-background-color: linear-gradient(#9091f2, #dcd3f7);
+}
+
+.choice-box {
+    -fx-background-color: #f0f0f0; /* Màu nền */
+    -fx-background-radius:10px;    /* Bo góc */
+    -fx-border-color: transparent;     /* Màu viền */
+    -fx-border-radius: 10px;        /* Bo góc viền */
+    -fx-border-width: 2px 2px 2px 2px;         /* Độ rộng viền */
+    -fx-font-family: 'Euclid Circular A Semibold';      /* Phông chữ */
+    -fx-text-fill: #aaa;        /* Màu chữ */
+}
+
+.choice-box:hover {
+    -fx-background-color: #f6f7f9; /* Màu nền khi rê chuột */
+}
+
+.choice-box .arrow {
+    -fx-background-color: #000000; /* Màu mũi tên */
+    -fx-background-radius: 0 5px 5px 0; /* Bo góc cho phần mũi tên */
+}
+
+.choice-box .list-cell {
+    -fx-background-color: #000000; /* Màu nền cho từng lựa chọn */
+    -fx-text-fill: #ffffff;      /* Màu chữ cho từng lựa chọn */
+}
+
+.choice-box .list-cell:hover {
+    -fx-background-color: #f6f7f9; /* Màu nền khi rê chuột lên từng lựa chọn */
+}
+
+
+/*table*/
+
+
+/* Style for search */
+.search {
+    -fx-padding: 5 12; /* Padding */
+    -fx-font-size: 14px; /* Font size */
+    -fx-pref-height: 20px; /* Line height */
+    -fx-text-fill: #24292e; /* Text color */
+    -fx-background-color: #ffffff; /* Background color */
+    -fx-background-repeat: no-repeat; /* No repeat for background */
+    -fx-background-position: right 8px center; /* Background position */
+    -fx-border-color: #e1e4e8; /* Border color */
+    -fx-border-radius: 6; /* Rounded corners for the border */
+    -fx-background-radius: 6; /* Rounded corners for the background */
+    -fx-effect: innershadow(two-pass-box, rgba(225, 228, 232, 0.2), 1, 0, 0, 1); /* Shadow effect */
+}
+
+/* Focused state for the button */
+.search:focused {
+    -fx-border-color: #0366d6; /* Border color when focused */
+    -fx-effect: dropshadow(three-pass-box, rgba(3, 102, 214, 0.3), 3, 0, 0, 0); /* Shadow effect when focused */
+    -fx-background-color: #ffffff; /* Keep background white */
+    -fx-text-fill: #24292e; /* Text color remains same */
+}
+
+/* Style for the edit button */
+.edit-button {
+    -fx-background-color: transparent; /* Transparent background */
+    -fx-padding: 0; /* No padding */
+    -fx-cursor: hand; /* Pointer cursor on hover */
+}
+
+/* Hover effect for the icon button */
+.edit-button:hover {
+    -fx-background-color: #e0e0e0; /* Light gray background on hover */
+    -fx-border-radius: 6; /* Rounded border for hover */
+    -fx-background-radius: 6; /* Match rounded corners */
+}
+
+/* Table*/
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.table-view .column-header {
+    -fx-background-color: #ffffff; /* Màu nền tiêu đề cột */
+    -fx-text-fill: #ffffff; /* Màu chữ trắng */
+    -fx-font-size: 14px;
+}
+
+.table-view .table-cell {
+    -fx-background-color: white; /* Nền trắng cho các hàng */
+    -fx-text-fill: black; /* Chữ đen */
+    -fx-alignment: center; /* Căn chữ giữa */
+    -fx-font-size: 13px;
+    -fx-border-color: transparent; /* Loại bỏ border */
+}
+
+.table-row-cell {
+    -fx-cell-size: 40px; /* Độ cao hàng */
+    -fx-background-color: white; /* Nền trắng mặc định */
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #609cd4; /* Nền xanh khi được chọn */
+    -fx-text-fill: white; /* Chữ trắng khi được chọn */
+    -fx-background-radius: 5px;
+    -fx-background-insets: 2px;
+}
+
+.table-row-cell:odd{
+    -fx-background-color: #f6f7f9;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+    -fx-cell-size: 40px;
+
+}
+
+.table-row-cell:even{
+    -fx-background-color: #ffffff;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+    -fx-cell-size: 40px;
+
+}
+
+
