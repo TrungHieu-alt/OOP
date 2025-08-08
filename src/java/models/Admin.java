@@ -2,7 +2,7 @@ package models;
 
 import javax.swing.JFrame;
 
-public class Admin extend User{
+public class Admin extends User {
 
     public Admin(String name) {
         super(name);

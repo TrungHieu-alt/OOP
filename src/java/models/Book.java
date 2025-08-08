@@ -1,8 +1,9 @@
-package org.example;
+package models;
 
 import java.util.*;
 
 public class Book {
+    private int id;
     private String title;
     private String author;
     private String ISBN;
@@ -12,8 +13,14 @@ public class Book {
     private String categories;
     private String description;
     private String thumbnailLink;
+    private int quantity;
 
     public Book() {}
+
+    public Book(int id, String title) {
+        this.id = id;
+        this.title = title;
+    }
 
     public Book(String title, String ISBN, String author, String publishedDate, String publisher, long pageCount, String categories, String description, String thumbnailLink) {
         this.title = title;
@@ -25,6 +32,14 @@ public class Book {
         this.categories = categories;
         this.description = description;
         this.thumbnailLink = thumbnailLink;
+        this.quantity = 10;
+    }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -87,7 +102,7 @@ public class Book {
         return description;
     }
 
-    public void getDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -98,5 +113,9 @@ public class Book {
     public void setThumbnailLink(String thumbnailLink) {
         this.thumbnailLink = thumbnailLink;
     }
+
+    public int getQuantity() { return quantity; }
+
+    public void setQuantity(int quantity) { this.quantity = quantity; }
 
 }
