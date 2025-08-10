@@ -1,94 +1,129 @@
 package services;
 
+import exceptions.DatabaseException;
+import exceptions.DuplicateDataException;
+import exceptions.InvalidDataException;
 import models.Book;
 import repository.BookRepository;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class BookService {
     private final BookRepository bookRepository;
 
-    public BookService (BookRepository bookRepository) {
+    public BookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
-    public List<Book> getMostPopularBooks() throws SQLException {
-        return bookRepository.getMostPopularBooks();
+    private void validateBook(Book book) throws InvalidDataException {
+        if (book == null) {
+            throw new InvalidDataException("book", "Book must not be null");
+        }
+        if (book.getISBN() == null || book.getISBN().isBlank()) {
+            throw new InvalidDataException("isbn", "ISBN must not be blank");
+        }
+        if (book.getTitle() == null || book.getTitle().isBlank()) {
+            throw new InvalidDataException("title", "Title must not be blank");
+        }
+        if (book.getAuthor() == null || book.getAuthor().isBlank()) {
+            throw new InvalidDataException("author", "Author must not be blank");
+        }
+        if (book.getQuantity() < 0) {
+            throw new InvalidDataException("quantity", "Quantity must be >= 0");
+        }
     }
 
-    public List<Book> getNewBooks() throws SQLException {
-        return bookRepository.getNewBooks();
-    }
+    public boolean addBook(Book book)
+            throws DatabaseException, DuplicateDataException, InvalidDataException {
 
-    public boolean addBook(Book book) throws SQLException {
+        validateBook(book);
+
+        // Trùng dữ liệu -> DuplicateDataException
+        if (bookRepository.doesBookExists(book.getISBN())) {
+            throw new DuplicateDataException("isbn", book.getISBN(),
+                    "Book already exists with this ISBN");
+        }
+
+        // Hợp lệ -> thêm
         return bookRepository.addBook(book);
     }
 
-    public List<Book> getAllBooks() throws SQLException {
-        try {
-            return bookRepository.getAllBooks();
-        } catch (SQLException e) {
-            // Log the error or handle it as necessary
-            throw new SQLException("Error while fetching all books", e);
+    public boolean updateBook(Book book)
+            throws DatabaseException, InvalidDataException {
+
+        validateBook(book);
+
+        // Không tìm thấy -> InvalidDataException
+        if (!bookRepository.doesBookExists(book.getISBN())) {
+            throw new InvalidDataException("isbn", "Book not found with this ISBN");
         }
-    }
 
-    public boolean removeBook(Book book) throws SQLException {
-        return bookRepository.removeBook(book);
-    }
-
-    public boolean updateBook(Book book) {
         return bookRepository.updateBook(book);
     }
 
-    public List<Book> searchBooks(String queryText) throws SQLException {
-        try {
-            return bookRepository.searchBooks(queryText);
-        } catch (SQLException e) {
-            throw new SQLException("Error while searching for books", e);
+    public boolean removeBook(Book book)
+            throws DatabaseException, InvalidDataException {
+
+        if (book == null || book.getISBN() == null || book.getISBN().isBlank()) {
+            throw new InvalidDataException("isbn", "ISBN must not be blank");
         }
+        if (!bookRepository.doesBookExists(book.getISBN())) {
+            throw new InvalidDataException("isbn", "Book not found with this ISBN");
+        }
+
+        return bookRepository.removeBook(book);
     }
 
-    public int getBookIdByISBN(Book book) throws SQLException {
-        try {
-            return bookRepository.getBookIdByISBN(book);
-        } catch (SQLException e) {
-            throw new SQLException("Error while fetching book ID by ISBN", e);
-        }
-    }
+    public boolean doesBookExist(String isbn)
+            throws DatabaseException, InvalidDataException {
 
-    public List<Book> getBorrowingBooksByMemberId(int id) throws SQLException {
-        try {
-            return bookRepository.getBorrowingBooksByMemberId(id);
-        } catch (SQLException e) {
-            throw new SQLException("Error while fetching borrowing books for member", e);
+        if (isbn == null || isbn.isBlank()) {
+            throw new InvalidDataException("isbn", "ISBN must not be blank");
         }
-    }
-
-    public List<Book> getReturnedBooksByMemberId(int id) throws SQLException {
-        try {
-            return bookRepository.getReturnedBooksByMemberId(id);
-        } catch (SQLException e) {
-            // Log the error or handle it as necessary
-            throw new SQLException("Error while fetching returned books for member", e);
-        }
-    }
-
-    public boolean doesBookExist(String isbn) throws SQLException {
         return bookRepository.doesBookExists(isbn);
     }
 
-    public int getBookQuantity(Book book) throws SQLException {
-        try {
-            return bookRepository.getBookQuantity(book);
-        } catch (SQLException e) {
-            // Log the error or handle it as necessary
-            throw new SQLException("Error while fetching book quantity", e);
-        }
+    public List<Book> getMostPopularBooks() throws DatabaseException {
+        return bookRepository.getMostPopularBooks();
     }
 
-    public int countBookRecords() throws SQLException {
+    public List<Book> getNewBooks() throws DatabaseException {
+        return bookRepository.getNewBooks();
+    }
+
+    public List<Book> getAllBooks() throws DatabaseException {
+        return bookRepository.getAllBooks();
+    }
+
+    public List<Book> searchBooks(String queryText) throws DatabaseException {
+        return bookRepository.searchBooks(queryText == null ? "" : queryText.trim());
+    }
+
+    public int getBookIdByISBN(Book book)
+            throws DatabaseException, InvalidDataException {
+        if (book == null || book.getISBN() == null || book.getISBN().isBlank()) {
+            throw new InvalidDataException("isbn", "ISBN must not be blank");
+        }
+        return bookRepository.getBookIdByISBN(book);
+    }
+
+    public List<Book> getBorrowingBooksByMemberId(int id) throws DatabaseException {
+        return bookRepository.getBorrowingBooksByMemberId(id);
+    }
+
+    public List<Book> getReturnedBooksByMemberId(int id) throws DatabaseException {
+        return bookRepository.getReturnedBooksByMemberId(id);
+    }
+
+    public int getBookQuantity(Book book)
+            throws DatabaseException, InvalidDataException {
+        if (book == null || book.getISBN() == null || book.getISBN().isBlank()) {
+            throw new InvalidDataException("isbn", "ISBN must not be blank");
+        }
+        return bookRepository.getBookQuantity(book);
+    }
+
+    public int countBookRecords() throws DatabaseException {
         return bookRepository.countBookRecords();
     }
 }
