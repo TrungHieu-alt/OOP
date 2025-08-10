@@ -9,11 +9,6 @@ import repository.BookRepository;
 import java.util.List;
 
 public class BookService {
-    private final BookRepository bookRepository;
-
-    public BookService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
 
     private void validateBook(Book book) throws InvalidDataException {
         if (book == null) {
@@ -39,13 +34,13 @@ public class BookService {
         validateBook(book);
 
         // Trùng dữ liệu -> DuplicateDataException
-        if (bookRepository.doesBookExists(book.getISBN())) {
+        if (BookRepository.doesBookExists(book.getISBN())) {
             throw new DuplicateDataException("isbn", book.getISBN(),
                     "Book already exists with this ISBN");
         }
 
         // Hợp lệ -> thêm
-        return bookRepository.addBook(book);
+        return BookRepository.addBook(book);
     }
 
     public boolean updateBook(Book book)
@@ -54,11 +49,11 @@ public class BookService {
         validateBook(book);
 
         // Không tìm thấy -> InvalidDataException
-        if (!bookRepository.doesBookExists(book.getISBN())) {
+        if (!BookRepository.doesBookExists(book.getISBN())) {
             throw new InvalidDataException("isbn", "Book not found with this ISBN");
         }
 
-        return bookRepository.updateBook(book);
+        return BookRepository.updateBook(book);
     }
 
     public boolean removeBook(Book book)
@@ -67,11 +62,11 @@ public class BookService {
         if (book == null || book.getISBN() == null || book.getISBN().isBlank()) {
             throw new InvalidDataException("isbn", "ISBN must not be blank");
         }
-        if (!bookRepository.doesBookExists(book.getISBN())) {
+        if (!BookRepository.doesBookExists(book.getISBN())) {
             throw new InvalidDataException("isbn", "Book not found with this ISBN");
         }
 
-        return bookRepository.removeBook(book);
+        return BookRepository.removeBook(book);
     }
 
     public boolean doesBookExist(String isbn)
@@ -80,23 +75,23 @@ public class BookService {
         if (isbn == null || isbn.isBlank()) {
             throw new InvalidDataException("isbn", "ISBN must not be blank");
         }
-        return bookRepository.doesBookExists(isbn);
+        return BookRepository.doesBookExists(isbn);
     }
 
     public List<Book> getMostPopularBooks() throws DatabaseException {
-        return bookRepository.getMostPopularBooks();
+        return BookRepository.getMostPopularBooks();
     }
 
     public List<Book> getNewBooks() throws DatabaseException {
-        return bookRepository.getNewBooks();
+        return BookRepository.getNewBooks();
     }
 
     public List<Book> getAllBooks() throws DatabaseException {
-        return bookRepository.getAllBooks();
+        return BookRepository.getAllBooks();
     }
 
     public List<Book> searchBooks(String queryText) throws DatabaseException {
-        return bookRepository.searchBooks(queryText == null ? "" : queryText.trim());
+        return BookRepository.searchBooks(queryText == null ? "" : queryText.trim());
     }
 
     public int getBookIdByISBN(Book book)
@@ -104,15 +99,15 @@ public class BookService {
         if (book == null || book.getISBN() == null || book.getISBN().isBlank()) {
             throw new InvalidDataException("isbn", "ISBN must not be blank");
         }
-        return bookRepository.getBookIdByISBN(book);
+        return BookRepository.getBookIdByISBN(book);
     }
 
     public List<Book> getBorrowingBooksByMemberId(int id) throws DatabaseException {
-        return bookRepository.getBorrowingBooksByMemberId(id);
+        return BookRepository.getBorrowingBooksByMemberId(id);
     }
 
     public List<Book> getReturnedBooksByMemberId(int id) throws DatabaseException {
-        return bookRepository.getReturnedBooksByMemberId(id);
+        return BookRepository.getReturnedBooksByMemberId(id);
     }
 
     public int getBookQuantity(Book book)
@@ -120,10 +115,10 @@ public class BookService {
         if (book == null || book.getISBN() == null || book.getISBN().isBlank()) {
             throw new InvalidDataException("isbn", "ISBN must not be blank");
         }
-        return bookRepository.getBookQuantity(book);
+        return BookRepository.getBookQuantity(book);
     }
 
     public int countBookRecords() throws DatabaseException {
-        return bookRepository.countBookRecords();
+        return BookRepository.countBookRecords();
     }
 }

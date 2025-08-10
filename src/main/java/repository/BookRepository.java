@@ -1,6 +1,7 @@
 package repository;
 
 import exceptions.DatabaseException;
+import exceptions.InvalidDataException;
 import models.Book;
 
 import java.sql.*;
@@ -259,14 +260,18 @@ public class BookRepository {
         }
     }
 
-    public static int getBookQuantity(Book book) throws DatabaseException {
-        String sql = "SELECT quantity FROM books WHERE isbn = ?";
+    public static int getBookQuantity(Book book) throws DatabaseException, InvalidDataException {
+        String sql = "SELECT quantity FROM books WHERE isbn = ? LIMIT 1";
         try (Connection c = DatabaseConnection.getConnection();
              PreparedStatement ps = c.prepareStatement(sql)) {
 
             ps.setString(1, book.getISBN());
             try (ResultSet rs = ps.executeQuery()) {
-                return rs.next() ? rs.getInt("quantity") : 0; // 0 nếu không có; service có thể chuyển thành lỗi not-found
+                if (rs.next()) {
+                    return rs.getInt("quantity");
+                } else {
+                    throw new InvalidDataException("isbn", "Book not found with this ISBN");
+                }
             }
         } catch (SQLException e) {
             throw new DatabaseException("Error fetching quantity for book by ISBN", e);
