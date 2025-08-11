@@ -15,7 +15,7 @@
             <Font name="EuclidCircularA-SemiBold" size="30.0" />
          </font>
       </Label>
-      <ScrollPane fx:id="library_scrollpane" hbarPolicy="NEVER" layoutX="255.0" layoutY="100.0" prefHeight="150.0" prefWidth="200.0" styleClass="api_scrollpane" stylesheets="@../css/style.css" vbarPolicy="NEVER" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="100.0">
+      <ScrollPane fx:id="library_scrollpane" hbarPolicy="NEVER" layoutX="255.0" layoutY="130.0" prefHeight="200.0" prefWidth="200.0" styleClass="api_scrollpane" stylesheets="@../css/style.css" vbarPolicy="NEVER" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="100.0">
          <content>
             <GridPane fx:id="library_gridpane">
               <rowConstraints>
@@ -26,3 +26,4 @@
       </ScrollPane>
    </children>
 </AnchorPane>
+
