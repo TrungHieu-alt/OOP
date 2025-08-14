@@ -526,4 +526,22 @@
 
 }
 
+/* Close Button Style */
+.close_button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #555; /* Default gray text */
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-background-radius: 50%;
+    -fx-padding: 0;
+}
 
+.close_button:hover {
+    -fx-background-color: #ff4c4c; /* Red hover background */
+    -fx-text-fill: white;          /* White text on hover */
+}
+
+.close_button:pressed {
+    -fx-background-color: #cc0000; /* Darker red when pressed */
+}
