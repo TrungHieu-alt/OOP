@@ -7,12 +7,19 @@ import java.util.*;
 import java.net.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import models.Book;
 
-public class searchBookAPI {
-
+/**
+ * A class to search for books using the Google Books API.
+ */
+public class SearchBookAPI {
     public static List<Book> searchResult = new ArrayList<Book>();
 
+    /**
+     * Fetches book information based on the search name from the Google Books API.
+     *
+     * @param searchName the name of the book to search for
+     * @throws IOException if an I/O error occurs
+     */
     public void getBookInfos(String searchName) throws IOException {
         String encodedSearchName = URLEncoder.encode(searchName, "UTF-8");
         String apiUrl = "https://www.googleapis.com/books/v1/volumes?q=" + encodedSearchName + "&maxResults=30&key=AIzaSyCyQ75JWs7yCqz3-JJULg-ZbzymlOfwEm4";
@@ -67,8 +74,5 @@ public class searchBookAPI {
                 searchResult.add(result);
             }
         }
-    }
-
-    public static void main(String[] args) throws IOException {
     }
 }

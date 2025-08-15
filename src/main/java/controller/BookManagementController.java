@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import models.searchBookAPI;
 
 /**
  * Controller class for managing the book management view.
@@ -494,3 +495,4 @@ public class BookManagementController implements Initializable {
         });
     }
 
+}

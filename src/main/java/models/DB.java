@@ -1,9 +1,7 @@
 package models;
 
 
-import Controller.AdminPanelController;
-import Controller.DashboardController;
-import Controller.Logged;
+import controller.AdminPanelController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
