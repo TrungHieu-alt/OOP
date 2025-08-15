@@ -494,4 +494,3 @@ public class BookManagementController implements Initializable {
         });
     }
 
-}
