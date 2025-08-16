@@ -1,7 +1,6 @@
 package controller;
 
 
-import models.DB;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
