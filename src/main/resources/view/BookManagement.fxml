@@ -148,30 +148,30 @@
                         <Font name="EuclidCircularA-SemiBold" size="13.0" />
                     </font>
                 </Button>
-            <Button fx:id="update_button" layoutX="29.0" layoutY="646.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" styleClass="black_button" stylesheets="@../css/style.css" text="Update" AnchorPane.bottomAnchor="22.0">
-               <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/update_icon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font name="EuclidCircularA-SemiBold" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="remove_button" layoutX="158.0" layoutY="646.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" styleClass="black_button" stylesheets="@../css/style.css" text="Remove" AnchorPane.bottomAnchor="22.0">
-               <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/remove_icon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font name="EuclidCircularA-SemiBold" size="13.0" />
-               </font>
-            </Button>
+                <Button fx:id="update_button" layoutX="29.0" layoutY="646.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" styleClass="black_button" stylesheets="@../css/style.css" text="Update" AnchorPane.bottomAnchor="22.0">
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/update_icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <font>
+                        <Font name="EuclidCircularA-SemiBold" size="13.0" />
+                    </font>
+                </Button>
+                <Button fx:id="remove_button" layoutX="158.0" layoutY="646.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" styleClass="black_button" stylesheets="@../css/style.css" text="Remove" AnchorPane.bottomAnchor="22.0">
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/remove_icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <font>
+                        <Font name="EuclidCircularA-SemiBold" size="13.0" />
+                    </font>
+                </Button>
             </children>
         </AnchorPane>
     </children>
