@@ -1,29 +1,27 @@
 package repository;
+
 import exceptions.DatabaseException;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
-public final class DatabaseConnection {
+public class DatabaseConnection {
     private static final String URL = "jdbc:mysql://localhost:3306/library_management_system";
     private static final String USER = "root";
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = ""; // Change your database password here
 
-    private DatabaseConnection() {
-        // Prevent instantiation
-    }
-
-    public static Connection getConnection() {
+    /**
+     * Get a connection to the database.
+     * @return a Connection object to interact with the database.
+     * @throws DatabaseException if a database connection cannot be established.
+     */
+    public static Connection getConnection() throws DatabaseException {
         try {
             return DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException e) {
-            throw new DatabaseException(
-                    "Unable to connect to the database at " + URL,
-                    e,
-                    "DB_CONN_FAIL"
-            );
+            throw new DatabaseException("Failed to establish a connection to the database", e);
         }
     }
 }
+
