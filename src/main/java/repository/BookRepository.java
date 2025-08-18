@@ -34,11 +34,12 @@ public class BookRepository {
         List<Book> books = new ArrayList<>();
 
         try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM books")) {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM books ORDER BY RAND() LIMIT 144")) {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Book book = new Book();
+                book.setId(resultSet.getInt("id"));
                 book.setTitle(resultSet.getString("title"));
                 book.setAuthor(resultSet.getString("author"));
                 book.setPublishedDate(resultSet.getString("published_date"));
@@ -90,7 +91,7 @@ public class BookRepository {
 
     public static List<Book> getNewBooks() throws DatabaseException {
         List<Book> books = new ArrayList<>();
-        String query = "SELECT * FROM books ORDER BY id DESC LIMIT 10";
+        String query = "SELECT * FROM books WHERE id > 15 ORDER BY id DESC LIMIT 10;";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
