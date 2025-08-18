@@ -44,7 +44,7 @@ public class BigCardController implements Initializable {
      * @param book the book to be displayed.
      */
     public void setData(Book book) {
-        Image thumbnail = new Image(book.getThumbnailLink());
+        Image thumbnail = new Image(book.getThumbnailLink(), true);
         thumbnail_view.setImage(thumbnail);
         title_label.setText(book.getTitle());
         author_label.setText(book.getAuthor());
