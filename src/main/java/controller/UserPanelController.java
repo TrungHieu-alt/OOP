@@ -242,6 +242,7 @@ public class UserPanelController implements Initializable{
         FXMLLoader libraryLoader = new FXMLLoader(getClass().getResource("/view/Library.fxml"));
         AnchorPane libraryPane = libraryLoader.load();
         LibraryController libraryController = libraryLoader.getController();
+        libraryController.setMember(member);
         library_anchorpane.getChildren().clear();
         library_anchorpane.getChildren().add(libraryPane);
     }
