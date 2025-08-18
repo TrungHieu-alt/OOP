@@ -44,7 +44,7 @@ public class SmallCardController implements Initializable {
      * @param book the book to display in the small card.
      */
     public void setData(Book book) {
-        Image thumbnail = new Image(book.getThumbnailLink());
+        Image thumbnail = new Image(book.getThumbnailLink(), true);
         thumbnail_view.setImage(thumbnail);
         title_label.setText(book.getTitle());
         author_label.setText(book.getAuthor());
