@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import models.*;
 import javafx.fxml.FXML;
 import ui_helper.AlertHelper;
@@ -46,12 +47,24 @@ public class BorrowBookController {
     @FXML
     private TextArea title_text;
 
-    /**
-     * Initializes the controller class.
-     */
     @FXML
-    public void initialize() {
+    private Button close_button;
+
+    @FXML
+    private void initialize() {
+        close_button.setOnAction(event -> {
+            detail_anchorpane.setVisible(false);
+            background_anchorpane.setVisible(false);
+        });
     }
+
+
+//    /**
+//     * Initializes the controller class.
+//     */
+//    @FXML
+//    public void initialize() {
+//    }
 
     /**
      * Sets the data for the borrow book view.
@@ -97,5 +110,9 @@ public class BorrowBookController {
                 AlertHelper.showError("Borrow Failed", "This book is currently unavailable for borrowing.");
             }
         });
+    }
+    
+    public Button getBorrowButton() {
+        return borrow_button;
     }
 }
