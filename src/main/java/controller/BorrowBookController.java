@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import models.*;
 import javafx.fxml.FXML;
 import ui_helper.AlertHelper;
+import exceptions.DatabaseException;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -97,21 +98,30 @@ public class BorrowBookController {
                 return;
             }
 
-            boolean isBorrowed = false;
+            boolean isBorrowed;
             try {
                 isBorrowed = member.borrowBook(book, dueDate);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            } catch (DatabaseException ex) { // <- bắt đúng ngoại lệ nghiệp vụ
+                // Ví dụ: message = "This book is currently unavailable"
+                AlertHelper.showError("Borrow Failed", ex.getMessage());
+                return; // dừng lại, đừng rethrow
+            } catch (Exception ex) {
+                // fallback cho lỗi không lường trước
+                AlertHelper.showError("Unexpected Error", "An unexpected error occurred. Please try again.");
+                ex.printStackTrace();
+                return;
             }
 
             if (isBorrowed) {
                 onSuccess.run();
             } else {
+                // Nhánh này chỉ xảy ra nếu borrowBook trả về false thay vì ném exception
                 AlertHelper.showError("Borrow Failed", "This book is currently unavailable for borrowing.");
             }
         });
     }
-    
+
+
     public Button getBorrowButton() {
         return borrow_button;
     }
