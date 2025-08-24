@@ -97,8 +97,10 @@ Dự án này là một ứng dụng quản lý thư viện được xây dựng
    git clone https://github.com/TrungHieu-alt/OOP
    ```
 2. Cấu hình CSDL trong `DatabaseConnection.java`.
-3. Chạy lớp `My_library.java` để khởi động ứng dụng.
-
+3. Khởi động ứng dụng bằng lệnh Maven:
+   ```bash
+   mvn clean javafx:run
+   ```
 ---
 
 👥 Vai trò người dùng
