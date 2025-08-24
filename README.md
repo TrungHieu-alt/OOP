@@ -6,6 +6,9 @@ Dự án này là một ứng dụng quản lý thư viện được xây dựng
 
 ---
 
+## 🏛️ Class Inheritance Diagram
+![Sơ đồ lớp kế thừa](src/main/resources/images/class_inherent_diagram.jpg)
+
 ## ⚙️ Chức năng chính
 ### 👨‍💼 Dành cho Admin:
 - Quản lý sách: thêm, xóa, sửa, tìm kiếm.
