@@ -21,7 +21,7 @@ Dự án này là một ứng dụng quản lý thư viện được xây dựng
 - Đăng ký, đăng nhập, chỉnh sửa hồ sơ cá nhân.
 - Tìm kiếm và xem chi tiết sách trong thư viện.
 - Mượn sách, trả sách, xem lịch sử mượn trả.
-- Bảng điều khiển hiển thị sách mới, sách phổ biến.
+- Bảng điều khiển hiển thị sách mới, sách phổ biến, sách recommend.
 
 ---
 
