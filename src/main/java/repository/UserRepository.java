@@ -188,6 +188,16 @@ public class UserRepository {
                 psinsert.setString(6, avatar_path);
                 psinsert.executeUpdate();
 
+                services.UserSession.get().setUsername(username);
+                services.UserSession.get().setFirstName(firstName);
+                services.UserSession.get().setLastName(lastName);
+                services.UserSession.get().setRole(role);
+                services.UserSession.get().setAvatarPath(avatar_path);
+
+                System.out.println("[SIGNUP] set session: username=" + services.UserSession.get().getUsername()
+                        + ", role=" + services.UserSession.get().getRole()
+                        + ", firstName=" + services.UserSession.get().getFirstName());
+
                 if (role.equals("Admin")) {
                     changeScene(event, "/view/MainAdmin.fxml", "Admin Dashboard", username, firstName, lastName, role, avatar_path);
                 } else {
@@ -228,6 +238,14 @@ public class UserRepository {
                     String retrievedAvatarPath = resultSet.getString("avatar_path");
 
                     if (retrievedPassword.equals(password)) {
+                        services.UserSession.get().setUsername(username);
+                        services.UserSession.get().setFirstName(retrievedFname);
+                        services.UserSession.get().setLastName(retrievedLname);
+                        services.UserSession.get().setRole(retrievedRole);
+                        services.UserSession.get().setAvatarPath(retrievedAvatarPath);
+                        System.out.println("[LOGIN] set session: username=" + services.UserSession.get().getUsername()
+                                + ", role=" + services.UserSession.get().getRole()
+                                + ", firstName=" + services.UserSession.get().getFirstName());
                         if (retrievedRole.equals("Admin")) {
                             changeScene(event, "/view/MainAdmin.fxml", "Admin Dashboard", username, retrievedFname, retrievedLname, retrievedRole, retrievedAvatarPath);
                         } else if (retrievedRole.equals("Member")) {
@@ -396,10 +414,16 @@ public class UserRepository {
 
     public static void changeScene(ActionEvent event, String fxmlFile, String title, String userName, String firstName, String lastName, String role, String avatar_path) throws IOException {
         Parent root = null;
+        System.out.println("[changeScene] BEFORE load, session username="
+                + services.UserSession.get().getUsername()
+                + " | instanceId=" + System.identityHashCode(services.UserSession.get()));
         FXMLLoader fxmlLoader = new FXMLLoader(UserRepository.class.getResource(fxmlFile));
 
         root = fxmlLoader.load();
 
+        System.out.println("[changeScene] AFTER load, session username="
+                + services.UserSession.get().getUsername()
+                + " | instanceId=" + System.identityHashCode(services.UserSession.get()));
         if ((userName != null) && (firstName != null)) {
             if ("Admin".equals(role)) {
                 AdminPanelController adminController = fxmlLoader.getController();

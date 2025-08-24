@@ -97,6 +97,16 @@ public class UserService {
             } else if (!user.getPassword().equals(password)) {
                 throw new AuthenticationException("Incorrect password!");
             } else {
+                services.UserSession.get().setUsername(user.getUsername());
+                services.UserSession.get().setFirstName(user.getFName());
+                services.UserSession.get().setLastName(user.getLname());
+                services.UserSession.get().setRole(user.getRole());
+                services.UserSession.get().setAvatarPath(user.getImagePath());
+
+                System.out.println("[LOGIN/SERVICE] set session: username=" + services.UserSession.get().getUsername()
+                        + ", role=" + services.UserSession.get().getRole()
+                        + ", firstName=" + services.UserSession.get().getFirstName());
+
                 navigateToDashboard(
                         event,
                         user.getRole(),

@@ -11,8 +11,8 @@ import javafx.scene.layout.VBox;
 import models.Book;
 import repository.BookRepository;
 import services.BookService;
+import services.UserSession;
 import ui_helper.CardHelper;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,11 @@ public class DashboardMemberController implements Initializable {
     @FXML
     private ScrollPane newbooks_scrollpane;
 
+    @FXML private HBox recommended_HBox;
+    @FXML private ScrollPane recommended_scrollpane;
+
     private BookService bookService;
+    private String username;
     private static final BookRepository bookRepository = new BookRepository();
 
     /**
@@ -50,9 +54,22 @@ public class DashboardMemberController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.bookService = new BookService(bookRepository);
+
+        this.username = UserSession.get().getUsername();
+        System.out.println("[DashboardMemberController] session username=" + this.username);
+
         displayMostPopularBooks();
         displayNewBooks();
+
+        if (this.username != null && !this.username.isEmpty()) {
+            displayRecommendedBooks();
+        } else {
+            System.out.println("[DashboardMemberController] username is null/empty -> skip recommend.");
+            Label warn = new Label("No username found in session.");
+            recommended_HBox.getChildren().setAll(warn);
+        }
     }
+
 
     /**
      * Displays the most popular books in the dashboard.
@@ -135,5 +152,55 @@ public class DashboardMemberController implements Initializable {
         Thread thread = new Thread(loadNewBooksTask);
         thread.setDaemon(true);
         thread.start();
+    }
+
+    public void displayRecommendedBooks() {
+        final String u = (this.username != null) ? this.username : UserSession.get().getUsername();
+
+        recommended_HBox.getChildren().clear();
+        Label loadingLabel = new Label("Loading recommended books...");
+        loadingLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: gray;");
+        recommended_HBox.getChildren().add(loadingLabel);
+
+        Task<List<HBox>> loadRecommendedBooksTask = new Task<>() {
+            @Override
+            protected List<HBox> call() throws Exception {
+                List<HBox> cards = new ArrayList<>();
+                List<Book> books = bookService.getRecommendedBooksForUser(u);
+                if (books == null || books.isEmpty()) {
+                    return null;
+                }
+
+                for (Book book : books) {
+                    HBox bigCard = CardHelper.displayBigCard(book);
+                    cards.add(bigCard);
+                }
+                return cards;
+            }
+        };
+
+        loadRecommendedBooksTask.setOnSucceeded(e -> {
+            recommended_HBox.getChildren().clear();
+            List<HBox> cards = loadRecommendedBooksTask.getValue();
+
+            if (cards == null || cards.isEmpty()) {
+                Label hint = new Label("📚 No recommendations are available. Please borrow at least one book to enable personalized suggestions.");
+                hint.setStyle("-fx-font-size: 16px; -fx-text-fill: gray; -fx-font-style: italic;");
+                recommended_HBox.getChildren().add(hint);
+            } else {
+                recommended_HBox.getChildren().addAll(cards);
+            }
+        });
+
+        loadRecommendedBooksTask.setOnFailed(e -> {
+            recommended_HBox.getChildren().clear();
+            Label errorLabel = new Label("Failed to load recommended books.");
+            errorLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: red;");
+            recommended_HBox.getChildren().add(errorLabel);
+        });
+
+        Thread t = new Thread(loadRecommendedBooksTask);
+        t.setDaemon(true);
+        t.start();
     }
 }

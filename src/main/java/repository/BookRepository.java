@@ -91,22 +91,42 @@ public class BookRepository {
 
     public static List<Book> getNewBooks() throws DatabaseException {
         List<Book> books = new ArrayList<>();
-        String query = "SELECT * FROM books WHERE id > 15 ORDER BY id DESC LIMIT 10;";
+
+        String query = """
+        SELECT
+            id, title, author, published_date, categories, description,
+            thumbnail_link, isbn, quantity
+        FROM books
+        ORDER BY
+            CASE WHEN published_date IS NULL OR published_date = '' THEN 1 ELSE 0 END,
+            published_date DESC,
+            id DESC
+        LIMIT 10
+        """;
 
         try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+             PreparedStatement ps = connection.prepareStatement(query);
+             ResultSet rs = ps.executeQuery()) {
 
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
+            while (rs.next()) {
                 Book book = new Book();
-                book.setTitle(resultSet.getString("title"));
-                book.setAuthor(resultSet.getString("author"));
-                book.setPublishedDate(resultSet.getString("published_date"));
-                book.setCategories(resultSet.getString("categories"));
-                book.setDescription(resultSet.getString("description"));
-                book.setThumbnailLink(resultSet.getString("thumbnail_link"));
-                book.setISBN(resultSet.getString("isbn"));
-                book.setQuantity(resultSet.getInt("quantity"));
+                book.setId(rs.getInt("id"));
+                book.setTitle(rs.getString("title"));
+                book.setAuthor(rs.getString("author"));
+                book.setPublishedDate(rs.getString("published_date"));
+
+                String categories = rs.getString("categories");
+                book.setCategories(categories != null ? categories : "");
+
+                String desc = rs.getString("description");
+                book.setDescription(desc != null ? desc : "");
+
+                String thumb = rs.getString("thumbnail_link");
+                book.setThumbnailLink(thumb != null ? thumb : "");
+
+                book.setISBN(rs.getString("isbn"));
+                book.setQuantity(rs.getInt("quantity"));
+
                 books.add(book);
             }
         } catch (SQLException e) {
@@ -114,6 +134,51 @@ public class BookRepository {
         }
         return books;
     }
+
+    public static List<Book> getRecommendedBooksForUser(String username) throws DatabaseException {
+        List<Book> books = new ArrayList<>();
+
+        String sql = """
+        SELECT b.id, b.title, b.author, b.published_date, b.categories, b.description,
+               b.thumbnail_link, b.isbn, b.quantity
+        FROM books b
+        JOIN userdetail u ON u.username = ?
+        WHERE b.categories LIKE CONCAT('%', u.favorite_category, '%')
+          AND (u.favorite_category IS NOT NULL AND u.favorite_category <> '')
+        ORDER BY
+            CASE WHEN b.published_date IS NULL OR b.published_date = '' THEN 1 ELSE 0 END,
+            b.published_date DESC,
+            b.id DESC
+        LIMIT 10
+        """;
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setString(1, username);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Book book = new Book();
+                    book.setId(rs.getInt("id"));
+                    book.setTitle(rs.getString("title"));
+                    book.setAuthor(rs.getString("author"));
+                    book.setPublishedDate(rs.getString("published_date"));
+                    book.setCategories(rs.getString("categories"));
+                    book.setDescription(rs.getString("description"));
+                    book.setThumbnailLink(rs.getString("thumbnail_link"));
+                    book.setISBN(rs.getString("isbn"));
+                    book.setQuantity(rs.getInt("quantity"));
+                    books.add(book);
+                }
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Error fetching recommended books for username=" + username, e);
+        }
+
+        return books;
+    }
+
 
     public static boolean addBook(Book book) throws DatabaseException {
         String query = "INSERT INTO books (title, author, isbn, published_date, publisher, page_count, categories, description, thumbnail_link, quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

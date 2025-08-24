@@ -24,6 +24,10 @@ public class BookService {
         return bookRepository.getNewBooks();
     }
 
+    public List<Book> getRecommendedBooksForUser(String username) throws DatabaseException {
+        return BookRepository.getRecommendedBooksForUser(username);
+    }
+
     public boolean addBook(Book book) throws DatabaseException, DuplicateDataException, InvalidDataException {
         if (book == null) {
             throw new IllegalArgumentException("Book cannot be null.");
