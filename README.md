@@ -7,7 +7,7 @@ Dự án này là một ứng dụng quản lý thư viện được xây dựng
 ---
 
 ## 🏛️ Class Inheritance Diagram
-![Sơ đồ lớp kế thừa](src/main/resources/images/class_inherent_diagram.jpg)
+![Sơ đồ lớp kế thừa](src/main/resources/images/class_inherent_diagram.png)
 
 ## ⚙️ Chức năng chính
 ### 👨‍💼 Dành cho Admin:
