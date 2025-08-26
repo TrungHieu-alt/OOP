@@ -1,5 +1,5 @@
 # 📚 Hệ thống Quản lý Thư viện
-Link video: 
+Link video: https://drive.google.com/file/d/1tAG36NUbQJU8DkdYxk3dtL2jlB75bTqf/view?usp=sharing
 
 ## 📝 Giới thiệu
 Dự án này là một ứng dụng quản lý thư viện được xây dựng bằng **Java** với mô hình **MVC (Model - View - Controller)**.  
